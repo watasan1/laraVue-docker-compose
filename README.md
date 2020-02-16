@@ -1,5 +1,5 @@
 # はじめに
-CroWish勉強会専用の『Laravel + Vue』の環境をサクッと構築できるものです。
+CroWish勉強会専用の『Laravel + Vue』の環境をサクッと構築できる資料です
 
 # 準備
 Dockerがinstallされていること
