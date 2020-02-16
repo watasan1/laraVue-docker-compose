@@ -1,7 +1,7 @@
 # はじめに
 CroWish勉強会専用の『Laravel + Vue』の環境をサクッと構築できるものです。
 
-#準備
+# 準備
 Dockerがinstallされていること
 
 ※windows 32bitではDockerが使用できません
@@ -11,7 +11,7 @@ Dockerがinstallされていること
 - [docker for mac install](https://qiita.com/kurkuru/items/127fa99ef5b2f0288b81)
 
 
-#構築手順
+# 構築手順
 ```
 $ git clone [url]
 
@@ -49,7 +49,7 @@ http://localhost:80
 **vue**
 http://localhost:8080
 
-##データベースとつなげてみよう！
+## データベースとつなげてみよう！
 
 ```:.env
 DB_CONNECTION=mysql
@@ -63,7 +63,7 @@ DB_PASSWORD=docker
 
 
 <!--　現状不要fuyou -->
-###注意点
+### 注意点
 **A. MySQLの認証方式の問題**
 
 この状態で`php artisan migrate`をするとエラーが出ます。理由は以下の通りです。
@@ -97,7 +97,7 @@ mysql> alter user 'root'@'%' identified with mysql_native_password by 'root';
 ```
 
 
-#豆
+# 豆
 Dockerfileを書き換えた時
 ```
 // Dockerfileをビルドして、コンテナを作成
