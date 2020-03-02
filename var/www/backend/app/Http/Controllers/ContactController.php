@@ -29,6 +29,10 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         //
+        $contact = $request->contact;
+        Contact::create($contact);
+           
+        return response()->json();
     }
 
     /**
