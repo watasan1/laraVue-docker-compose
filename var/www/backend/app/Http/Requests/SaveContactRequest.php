@@ -8,12 +8,13 @@ class SaveContactRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     * 認証機能がある場合に使用します。
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return true; // false -> true
     }
 
     /**
@@ -25,6 +26,16 @@ class SaveContactRequest extends FormRequest
     {
         return [
             //
+            'contact' => 'required',
+            'contact.first_name' => 'required|max:20',
+            'contact.last_name' => 'required|max:20',
+            'contact.phone_number' => 'required',
+            'contact.house_phone_number' => 'nullable',
+            'contact.email' => 'nullable|email|max:255',
+            'contact.address' => 'nullable|max:100',
+            'contact.birthday' => 'nullable|date',
+            'contact.memo' => 'nullable',
+            'contact.gender' => 'required|numeric'
         ];
     }
 }
