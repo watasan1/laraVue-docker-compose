@@ -44,7 +44,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        // 編集用データの取得
+        return $contact;
     }
 
     /**
@@ -56,7 +57,10 @@ class ContactController extends Controller
      */
     public function update(SaveContactRequest $request, Contact $contact)
     {
-        //
+        // 更新
+        $contact->update($request->contact);
+
+        return response()->json();
     }
 
     /**
