@@ -71,6 +71,9 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        // 削除
+        $contact->delete();
+
+        return response()->json();
     }
 }
