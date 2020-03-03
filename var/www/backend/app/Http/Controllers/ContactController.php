@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Http\Requests\SaveContactRequest; //5_27edit
 
 class ContactController extends Controller
 {
@@ -26,9 +27,9 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveContactRequest $request)
     {
-        //
+        // 5_27 
         $contact = $request->contact;
         Contact::create($contact);
            
@@ -53,7 +54,7 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(SaveContactRequest $request, Contact $contact)
     {
         //
     }
