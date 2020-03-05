@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveContactRequest; //5_27edit
+use App\Http\Resources\ContactResource; //5_30add
+use Symfony\Component\HttpFoundation\Response; // 5_40add
 
 class ContactController extends Controller
 {
@@ -16,7 +18,7 @@ class ContactController extends Controller
     public function index()
     {
         //
-        $contacts = Contact::all();
+        $contacts = ContactResource::collection(Contact::all());
 
         return response()->json(['contacts' => $contacts]);
     }
@@ -33,7 +35,7 @@ class ContactController extends Controller
         $contact = $request->contact;
         Contact::create($contact);
            
-        return response()->json();
+        return response()->json([], Response::HTTP_CREATED); // 5_40 201返却
     }
 
     /**
@@ -60,7 +62,7 @@ class ContactController extends Controller
         // 更新
         $contact->update($request->contact);
 
-        return response()->json();
+        return response()->json([],Response::HTTP_ACCEPTED); // 5_40 200 返却
     }
 
     /**
@@ -74,6 +76,6 @@ class ContactController extends Controller
         // 削除
         $contact->delete();
 
-        return response()->json();
+        return response()->json([], Response::HTTP_NO_CONTENT); // 5_40 204 返却
     }
 }
