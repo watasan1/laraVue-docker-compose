@@ -1,7 +1,14 @@
 <template>
-    <div>index-contact.vue</div>
+  <div>
+    <Header />
+  </div>
 </template>
 
 <script>
-    export default {};
+import Header from "../../components/Header";
+export default {
+  components: {
+    Header
+  }
+};
 </script>
