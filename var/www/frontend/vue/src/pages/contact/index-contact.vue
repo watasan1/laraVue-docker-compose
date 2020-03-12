@@ -2,6 +2,9 @@
   <div>
     <Header />
     <v-container>
+      <!-- loading add -->
+      <Loading :loading="loading" />
+
       <v-data-table :headers="headers" :items="contacts" class="elevation-1">
         <template v-slot:item.image="{ item }">
           <v-avatar size="36px">
@@ -30,17 +33,20 @@
 
 <script>
 import Header from '../../components/Header'
+import Loading from '../../components/Loading' // 7_23 add
 import axios from 'axios' // 7_11 add
 
 const BASE_URL = 'http://localhost:8000'
 
 export default {
   components: {
-    Header
+    Header,
+    Loading /* 7_23 add */
   },
   // 以下add
   data: () => ({
     contacts: [],
+    loading: false /* 7_23 add */,
     headers: [
       { text: '画像', align: 'start', value: 'image' },
       { text: '名前', value: 'full_name' },
@@ -54,6 +60,8 @@ export default {
   methods: {
     axiosGetContacts() {
       let endpoint = BASE_URL + '/api/contact'
+      this.loading = true
+
       axios
         .get(endpoint)
         .then(res => {
@@ -61,7 +69,11 @@ export default {
           console.log(res)
         })
         .catch(error => {
+          this.loading = false
           console.warn(error)
+        })
+        .finally(() => {
+          this.loading = false
         })
     },
     editContact() {
@@ -73,15 +85,18 @@ export default {
       this.axiosDeleteContact(contact.id)
     },
     axiosDeleteContact(id) {
+      this.loading = true
       let endpoint = BASE_URL + `/api/contact/${id}`
 
       axios
         .delete(endpoint)
         .then(res => {
           console.log(res)
+          this.loading = false
           this.refresh()
         })
         .catch(error => {
+          this.loading = false
           console.log(error)
         })
     },
