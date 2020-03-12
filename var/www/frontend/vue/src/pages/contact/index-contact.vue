@@ -67,8 +67,26 @@ export default {
     editContact() {
       // 編集 追加
     },
-    deleteContact() {
+    deleteContact(contact) {
       // 削除
+      if (!confirm('削除しますがよろしいでしょうか')) return
+      this.axiosDeleteContact(contact.id)
+    },
+    axiosDeleteContact(id) {
+      let endpoint = BASE_URL + `/api/contact/${id}`
+
+      axios
+        .delete(endpoint)
+        .then(res => {
+          console.log(res)
+          this.refresh()
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    refresh() {
+      this.axiosGetContacts()
     }
   },
   filters: {
