@@ -2,6 +2,9 @@
   <div>
     <Header />
     <v-container>
+      <!-- Spinners add -->
+      <Loading :loading="loading" />
+      <!--  -->
       <v-row>
         <v-col cols="12" sm="6">
           <v-text-field v-model="contact.first_name" label="姓" outlined></v-text-field>
@@ -24,7 +27,9 @@
       <v-textarea v-model="contact.memo" label="メモ" auto-grow outlined rows="3" row-height="25"></v-textarea>
       <v-file-input accept="image/*" label="avatar"></v-file-input>
       <div class="my-5">
-        <v-btn large>登録</v-btn>
+        <!-- saveContact add -->
+        <v-btn large @click="saveContact()">登録</v-btn>
+        <!--  -->
       </div>
     </v-container>
   </div>
@@ -32,13 +37,20 @@
 
 <script>
 import Header from '../../components/Header'
+// axios と Spinners add
+import Loading from '../../components/Loading'
+import axios from 'axios'
+
+const BASE_URL = 'http://localhost:8000'
 
 export default {
   components: {
-    Header
+    Header,
+    Loading
   },
   data: () => {
     return {
+      loading: false,
       contact: {
         first_name: '',
         last_name: '',
@@ -52,6 +64,33 @@ export default {
         memo: ''
       }
     }
+  },
+  methods: {
+    saveContact() {
+      if (!confirm('この内容で登録してもよろしいでしょうか')) return
+      this.axiosSaveContact()
+    },
+    axiosSaveContact() {
+      this.loading = true
+      let endpoint = BASE_URL + '/api/contact'
+      const param = {
+        'contact': this.contact
+      }
+      axios
+        .post(endpoint, param)
+        .then(res => {
+          console.log(res)
+          this.$router.push({ name: 'contact' })
+        })
+        .catch(error => {
+          this.loading = false
+          console.warn(error)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    }
   }
 }
 </script>
+
