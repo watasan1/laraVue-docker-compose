@@ -7,7 +7,7 @@ import IndexContact from '../pages/contact/index-contact'; // 6/13 add
 Vue.use(VueRouter)
 
 const routes = [
-    // routes内をadd 6/13
+    // routes内をadd 6/13 7/30
     {
         path: '/',
         name: 'contact',
@@ -18,6 +18,11 @@ const routes = [
         name: 'create_contact',
         component: SaveContact
     },
+    {
+        path: '/edit/contact/:id',
+        name: 'edit_contact',
+        component: SaveContact
+    }
 ]
 
 const router = new VueRouter({
