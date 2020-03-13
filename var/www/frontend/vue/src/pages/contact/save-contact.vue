@@ -52,16 +52,16 @@ export default {
     return {
       loading: false,
       contact: {
-        first_name: '',
-        last_name: '',
-        avatar: '',
-        gender: '',
-        phone_number: '',
-        house_phone_number: '',
-        email: '',
-        address: '',
-        birthday: '',
-        memo: ''
+        'first_name': '',
+        'last_name': '',
+        'avatar': '',
+        'gender': '',
+        'phone_number': '',
+        'house_phone_number': '',
+        'email': '',
+        'address': '',
+        'birthday': '',
+        'memo': ''
       }
     }
   },
