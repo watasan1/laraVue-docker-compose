@@ -17,8 +17,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
-        $contacts = ContactResource::collection(Contact::all());
+        //all() →　latest()->get()
+        $contacts = ContactResource::collection(Contact::latest()->get());
 
         return response()->json(['contacts' => $contacts]);
     }
